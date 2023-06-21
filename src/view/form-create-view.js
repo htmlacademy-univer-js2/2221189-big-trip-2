@@ -18,7 +18,7 @@ const formCreateTemplate = () => {
         <span class="event__offer-price">${price}</span>
         </label>
     </div>`;
-  
+
   const createPhotosTemplate = () => {
     const photosList = [
       'img/photos/1.jpg',
@@ -28,9 +28,9 @@ const formCreateTemplate = () => {
       'img/photos/5.jpg',
     ];
 
-    return photosList.map(p => `<img class="event__photo" src="${p}" alt="Event photo">`).join('');
-  }
-  
+    return photosList.map((p) => `<img class="event__photo" src="${p}" alt="Event photo">`).join('');
+  };
+
   return `<li class="trip-events__item">
     <form class="event event--edit" action="#" method="post">
         <header class="event__header">
@@ -106,7 +106,7 @@ const formCreateTemplate = () => {
     </form>
   </li>
   `;
-}
+};
 
 class FormCreateView extends AbstractView {
   get template() {

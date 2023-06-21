@@ -1,10 +1,10 @@
 import Observable from "../framework/observable";
-import { FILTERS_TYPE } from "../const";
+import { FilterTypes } from "../const";
 
 class FiltersModel extends Observable {
     constructor() {
         super();
-        this._filter = FILTERS_TYPE.EVERYTHING;
+        this._filter = FilterTypes.EVERYTHING;
     }
 
     get filter() {

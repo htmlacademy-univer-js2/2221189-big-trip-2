@@ -7,7 +7,7 @@ const formChangeTemplate = () => {
     <input id="event-type-${eType}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${eType}">
     <label class="event__type-label  event__type-label--${eType}" for="event-type-${eType}-1">${eName}</label>
     </div>`;
-  
+
   const createOfferTemplate = (type, text, price, checked) =>
     `<div class="event__offer-selector">
         <input class="event__offer-checkbox  visually-hidden" id="event-offer-${type}-1" type="checkbox"
@@ -91,7 +91,7 @@ const formChangeTemplate = () => {
         </section>
     </form>
   </li>`;
-}
+};
 
 class FormChangeView extends AbstractView {
   get template() {

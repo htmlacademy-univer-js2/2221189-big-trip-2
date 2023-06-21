@@ -1,5 +1,5 @@
 import AbstractView from '../framework/view/abstract-view';
-import { SORTED_TYPE } from '../const';
+import { SortTypes } from '../const';
 
 const sortTemplate = (sortType) => {
   const checkSorting = (sorting) => sorting === sortType ? 'checked' : '';
@@ -13,11 +13,11 @@ const sortTemplate = (sortType) => {
 
   return (
     `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
-      ${createTabTemplate('day', 'Day', SORTED_TYPE.DAY)}
-      ${createTabTemplate('event', 'Event', SORTED_TYPE.EVENT)}
-      ${createTabTemplate('time', 'Time', SORTED_TYPE.TIME)}
-      ${createTabTemplate('price', 'Price', SORTED_TYPE.PRICE)}
-      ${createTabTemplate('offer', 'Offers', SORTED_TYPE.OFFERS)}
+      ${createTabTemplate('day', 'Day', SortTypes.DAY)}
+      ${createTabTemplate('event', 'Event', SortTypes.EVENT)}
+      ${createTabTemplate('time', 'Time', SortTypes.TIME)}
+      ${createTabTemplate('price', 'Price', SortTypes.PRICE)}
+      ${createTabTemplate('offer', 'Offers', SortTypes.OFFERS)}
     </form>`
   )
 };

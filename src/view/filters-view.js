@@ -1,5 +1,4 @@
 import AbstractView from '../framework/view/abstract-view';
-import { fileURLToPath } from "url";
 
 const filterItemTemplate = (filter, currentFilter) => {
   const {name, type} = filter;

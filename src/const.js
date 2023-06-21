@@ -1,28 +1,16 @@
-const TYPES_POINT = [
-  'taxi',
-  'bus',
-  'train',
-  'ship',
-  'drive',
-  'flight',
-  'check-in',
-  'sightseeing',
-  'restaurant'
-];
-
-const FILTERS_TYPE = {
+const FilterTypes = {
   EVERYTHING: 'everything',
   FUTURE: 'future',
   PAST: 'past'
 };
 
-const FILTERS_MESSAGE = {
+const FilterMessages = {
   everything: 'Click New Event to create your first point',
   future: 'There are no future events now',
   past: 'There are no past events now'
 };
 
-const SORTED_TYPE = {
+const SortTypes = {
   DAY: 'day',
   EVENT: 'event',
   TIME: 'time',
@@ -30,31 +18,32 @@ const SORTED_TYPE = {
   OFFERS: 'offers'
 };
 
-const USER_ACTIONS = {
+const UserActions = {
   UPDATE_POINT: 'UPDATE_TASK',
   ADD_POINT: 'ADD_TASK',
   DELETE_POINT: 'DELETE_TASK',
-}
+};
 
-const UPDATE_TYPES = {
+const UpdateTypes = {
   PATCH: 'PATCH',
   MINOR: 'MINOR',
   MAJOR: 'MAJOR',
   INIT: 'INIT',
-}
+};
 
-const METHOD = {
+const Method = {
   GET: 'GET',
   PUT: 'PUT',
+  POST: 'POST',
+  DELETE: 'DELETE',
 };
 
 export {
-  TYPES_POINT,
-  FILTERS_TYPE,
-  FILTERS_MESSAGE,
-  SORTED_TYPE,
-  USER_ACTIONS,
-  UPDATE_TYPES,
-  METHOD
+  FilterTypes,
+  FilterMessages,
+  SortTypes,
+  UserActions,
+  UpdateTypes,
+  Method
 };
 

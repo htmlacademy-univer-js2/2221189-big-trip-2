@@ -1,5 +1,5 @@
 import Observable from '../framework/observable';
-import { UPDATE_TYPES } from '../const';
+import { UpdateTypes } from '../const';
 
 class PointsModel extends Observable {
   constructor(pointsApi) {
@@ -20,13 +20,13 @@ class PointsModel extends Observable {
       this._points = [];
     }
 
-    this._notify(UPDATE_TYPES.INIT);
+    this._notify(UpdateTypes.INIT);
   };
 
   updatePoint = async (updateType, points) => {
-    const updatedIndex = this._points.findIndex(point => point.id === points.id);
+    const index = this._points.findIndex(point => point.id === points.id);
 
-    if (updatedIndex === -1) {
+    if (index === -1) {
       throw new Error('Can\'t update non-existing point');
     }
 
@@ -34,9 +34,9 @@ class PointsModel extends Observable {
       const response = await this._pointsApi.updatePoints(points);
       const updatedPoint = this._adaptToClient(response);
       this._points = [
-        ...this._points.slice(0, updatedIndex),
+        ...this._points.slice(0, index),
         updatedPoint,
-        ...this._points.slice(updatedIndex + 1)
+        ...this._points.slice(index + 1)
       ];
 
       this._notify(updateType, updatedPoint);
@@ -45,22 +45,34 @@ class PointsModel extends Observable {
     }
   }
 
-  addPoint = (updateType, points) => {
-    this._points = [points, 
-      ...this._points];
-
-    this._notify(updateType, points);
+  addPoint = async (updateType, point) => {
+    try {
+      const response = await this._pointsApi.addPoint(point);
+      const updatedPoint = this._adaptToClient(response);
+      this._points = [updatedPoint, ...this._points];
+      this._notify(updateType, updatedPoint);
+    } catch(err) {
+      throw new Error('Error adding point: ' + err);
+    }
   }
 
-  deletePoint = (updateType, points) => {
-    const deletedIndex = this._points.findIndex((point) => point.id === points.id);
+  deletePoint = async (updateType, point) => {
+    const index = this._points.findIndex((point) => point.id === point.id);
 
-    this._points = [
-      ...this._points.slice(0, deletedIndex),
-      ...this._points.slice(deletedIndex + 1)
-    ]
+    if (index === -1) {
+      throw new Error('Can\'t delete non-existing point');
+    }
 
-    this._notify(updateType, points);
+    try {
+      await this._pointsApi.deletePoint(point);
+      this._points = [
+        ...this._points.slice(0, index),
+        ...this._points.slice(index + 1)
+      ];
+      this._notify(updateType);
+    } catch(err) {
+      throw new Error('Error deleting point: ' + err);
+    }
   }
 
   _adaptToClient = (point) => {
